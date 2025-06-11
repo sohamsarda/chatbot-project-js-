@@ -1,4 +1,5 @@
 // server/server.js
+
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
@@ -22,6 +23,7 @@ app.post('/api/query', async (req, res) => {
       }
     });
 
+    // ✅ Send email to support team (you)
     await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: process.env.EMAIL_TO,
@@ -34,7 +36,25 @@ app.post('/api/query', async (req, res) => {
       `
     });
 
-    res.json({ message: "✅ Your message has been sent! We'll get back to you shortly." });
+    // ✅ Send confirmation email to the customer
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: email, // customer's email
+      subject: '✅ We received your message!',
+      html: `
+        <p>Hi <strong>${name}</strong>,</p>
+        <p>Thank you for reaching out to us. We've received your message and will respond shortly.</p>
+        <p><strong>Your message:</strong></p>
+        <blockquote>${message}</blockquote>
+        <hr/>
+        <p>📞 Mobile: ${mobile}</p>
+        <p>💬 You contacted us via our support form.</p>
+        <br/>
+        <p>Warm regards,<br><strong>Customer Support Team</strong></p>
+      `
+    });
+
+    res.json({ message: "✅ Your message has been sent and a confirmation email has been sent to your inbox!" });
   } catch (error) {
     console.error("Email send error:", error);
     res.status(500).json({ message: "❌ Failed to send your query. Please try again later." });
