@@ -1,32 +1,60 @@
-A lightweight, embeddable chatbot-style contact form for your website. Visitors can submit their name, email, mobile number, and a message. Submissions are sent to a backend API and an automatic reply is displayed in the popup window.
 
-📌 Features
-🧩 Simple HTML, CSS & JavaScript — no framework required
 
-📨 Sends contact form data to an API endpoint
+## 💬 Chatbot Contact Widget
 
-✅ Displays thank-you confirmation with auto-reply
+A simple and responsive contact form popup for websites, styled like a chatbot. Visitors can submit their details and receive an auto-reply instantly.
 
-🔁 Allows sending multiple messages
+---
 
-📱 Responsive and mobile-friendly popup widget
+### ✨ Features
 
-🧑‍💼 Ideal for business websites, portfolios, or support pages
+* Popup contact form with name, email, phone, and message
+* Sends data to a backend API (`/api/query`)
+* Displays an auto-reply and message summary
+* Mobile-friendly and easy to integrate
 
-🔧 Technologies Used
-HTML5 & CSS3
+---
 
-Vanilla JavaScript
+### 🚀 How It Works
 
-REST API integration (via fetch)
+1. User clicks the chat button to open the form.
+2. Fills in the details and clicks "Send Message".
+3. The form sends data to your API using `fetch()`.
+4. A thank-you message and auto-reply appear inside the popup.
 
-Works with any backend (Node.js, Express, Google Sheets, etc.)
+---
 
-🚀 How It Works
-Visitor clicks the 💬 chat icon.
+### 🔧 Setup
 
-A popup form appears asking for name, email, phone, and message.
+1. Add the HTML, CSS, and JS code to your website.
+2. Update the API URL in the JavaScript:
 
-On form submission, data is sent to the API (POST /api/query).
+   ```js
+   fetch('https://your-api-url.com/api/query', { ... })
+   ```
+3. Ensure your backend returns a JSON like:
 
-Displays a formatted thank-you message with auto-reply and input summary.
+   ```json
+   { "autoReply": "Thanks! We’ll get back to you soon." }
+   ```
+
+---
+
+### 📬 Backend Sample
+
+Expected POST request:
+
+```json
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "mobile": "9876543210",
+  "message": "Your message here"
+}
+```
+
+---
+
+### 📄 License
+
+Free to use and modify. Attribution appreciated but not required.
