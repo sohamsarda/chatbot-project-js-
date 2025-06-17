@@ -23,6 +23,10 @@ function generateAutoReply(message) {
   if (/\b(product|service|solution|offerings|software|tally)\b/i.test(msg)) {
     replies.push("We offer a range of Tally solutions including Silver, Multi-user, and custom modules. Let us know your requirement.");
   }
+  
+  if (/\b(range|customization|addon|tdl|addons)\b/i.test(msg)) {
+	  replies.push("We offer wide range of Tally Customization as per your requirement.");
+  }
 
   if (/\b(support|issue|problem|help|error|not working|bug|trouble|glitch)\b/i.test(msg)) {
     replies.push("Your support request has been noted. Our technical team will reach out to you shortly.");
